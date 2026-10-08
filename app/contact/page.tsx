@@ -11,8 +11,8 @@ export default function ContactPage() {
           <p>We’re here to help you choose the right course and answer any questions before enrollment.</p>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <p className="font-semibold text-slate-900">Email</p>
-            <a href="mailto:hello@itcourse.in" className="mt-2 inline-block text-blue-600 hover:text-blue-700">
-              hello@itcourse.in
+            <a href="mailto:cswithshahil@gmail.com" className="mt-2 inline-block text-blue-600 hover:text-blue-700">
+              cswithshahil@gmail.com
             </a>
           </div>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
