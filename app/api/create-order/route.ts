@@ -1,11 +1,6 @@
 import Razorpay from 'razorpay';
 import { NextResponse } from 'next/server';
 
-if (typeof process !== 'undefined' && typeof process.loadEnvFile === 'function') {
-  process.loadEnvFile('.env.local');
-  process.loadEnvFile('.env');
-}
-
 const COURSE_CATALOG = {
   'data-ai-career-program': {
     name: 'Full Stack Data & AI Career Program',
