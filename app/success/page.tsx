@@ -10,6 +10,13 @@ function SuccessContent() {
   const paymentId = searchParams.get('paymentId') ?? 'N/A';
   const orderId = searchParams.get('orderId') ?? 'N/A';
   const courseName = searchParams.get('courseName') ?? 'Full Stack Data & AI Career Program';
+  const customerName = searchParams.get('customerName') ?? 'N/A';
+  const customerPhone = searchParams.get('customerPhone') ?? 'N/A';
+  const customerEmail = searchParams.get('customerEmail') ?? 'N/A';
+  const customerNotes = searchParams.get('customerNotes') ?? 'N/A';
+
+  const learningHref =
+    courseName === 'Generative AI Project Source Code' ? '/courses/generative-ai-project-source-code' : '/courses';
 
   const handleDownloadReceipt = () => {
     const receiptDate = new Date().toLocaleString('en-IN', {
@@ -23,67 +30,28 @@ function SuccessContent() {
       return;
     }
 
-    const html = `
-      <html>
-        <head>
-          <title>CSwithShahil Receipt</title>
-          <style>
-            body { font-family: Arial, sans-serif; margin: 40px; color: #0f172a; }
-            .header { background: #10b981; color: white; padding: 18px 24px; border-radius: 12px; }
-            .title { font-size: 28px; font-weight: 700; margin: 0; }
-            .meta { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-            .card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
-            .label { font-size: 12px; color: #64748b; margin-bottom: 8px; }
-            .value { font-size: 16px; font-weight: 700; }
-            .footer { margin-top: 28px; font-size: 12px; color: #475569; }
-            @media print {
-              body { margin: 0; }
-              button { display: none; }
-            }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <div class="title">CSwithShahil</div>
-            <div style="margin-top: 6px; font-size: 14px;">Payment Receipt</div>
-          </div>
+    const printContent = [
+      `<html><head><title>CSwithShahil Receipt</title>`,
+      `<style>body{font-family:Arial,sans-serif;margin:40px;color:#0f172a;background:#fff} .header{background:#10b981;color:#fff;padding:18px 24px;border-radius:12px}.title{font-size:28px;font-weight:700;margin:0}.meta{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{border:1px solid #e2e8f0;border-radius:12px;padding:16px}.label{font-size:12px;color:#64748b;margin-bottom:8px}.value{font-size:16px;font-weight:700;word-break:break-word}.footer{margin-top:28px;font-size:12px;color:#475569;line-height:1.6}.section{margin-top:18px}.muted{color:#64748b}</style>`,
+      `</head><body>`,
+      `<div class="header"><div class="title">CSwithShahil</div><div style="margin-top:6px;font-size:14px;">Payment Receipt</div></div>`,
+      `<div class="meta">`,
+      `<div class="card"><div class="label">Course</div><div class="value">${courseName}</div></div>`,
+      `<div class="card"><div class="label">Date</div><div class="value">${receiptDate}</div></div>`,
+      `<div class="card"><div class="label">Payment ID</div><div class="value">${paymentId}</div></div>`,
+      `<div class="card"><div class="label">Order ID</div><div class="value">${orderId}</div></div>`,
+      `<div class="card"><div class="label">Student Name</div><div class="value">${customerName}</div></div>`,
+      `<div class="card"><div class="label">Phone</div><div class="value">${customerPhone}</div></div>`,
+      `<div class="card"><div class="label">Email</div><div class="value">${customerEmail}</div></div>`,
+      `<div class="card" style="grid-column:1 / -1"><div class="label">Notes</div><div class="value">${customerNotes}</div></div>`,
+      `</div>`,
+      `<div class="footer"><div class="section">Thank you for choosing CSwithShahil by Shahil Sir.</div><div class="section">This is a computer-generated receipt for your successful course purchase.</div></div>`,
+      `<script>window.onload=function(){setTimeout(function(){window.print();setTimeout(function(){window.close();},500);},300)};</script>`,
+      `</body></html>`,
+    ].join('');
 
-          <div class="meta">
-            <div class="card">
-              <div class="label">Course</div>
-              <div class="value">${courseName}</div>
-            </div>
-            <div class="card">
-              <div class="label">Date</div>
-              <div class="value">${receiptDate}</div>
-            </div>
-            <div class="card">
-              <div class="label">Payment ID</div>
-              <div class="value">${paymentId}</div>
-            </div>
-            <div class="card">
-              <div class="label">Order ID</div>
-              <div class="value">${orderId}</div>
-            </div>
-          </div>
-
-          <div class="footer">
-            Thank you for choosing CSwithShahil by Shahil Sir.<br />
-            This is a computer-generated receipt for your successful course purchase.
-          </div>
-          <script>
-            window.onload = function() {
-              setTimeout(() => {
-                window.print();
-                setTimeout(() => window.close(), 400);
-              }, 250);
-            };
-          </script>
-        </body>
-      </html>
-    `;
-
-    printWindow.document.write(html);
+    printWindow.document.open();
+    printWindow.document.write(printContent);
     printWindow.document.close();
   };
 
@@ -114,7 +82,7 @@ function SuccessContent() {
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
           <Link
-            href="#"
+            href={learningHref}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-800"
           >
             Start Learning

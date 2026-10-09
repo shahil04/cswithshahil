@@ -177,6 +177,10 @@ export function PaymentButton({
             paymentId: paymentResponse.razorpay_payment_id,
             orderId: paymentResponse.razorpay_order_id,
             courseName,
+            customerName: customer.name.trim(),
+            customerPhone: customer.phone.trim(),
+            customerEmail: customer.email.trim(),
+            customerNotes: customer.notes.trim(),
           });
 
           router.push(`/success?${params.toString()}`);
