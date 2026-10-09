@@ -22,6 +22,11 @@ const COURSE_CATALOG = {
     amount: 999 * 100,
     currency: 'INR',
   },
+  'generative-ai-project-source-code': {
+    name: 'Generative AI Project Source Code',
+    amount: 9 * 100,
+    currency: 'INR',
+  },
 } as const;
 
 const razorpay =
