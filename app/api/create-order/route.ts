@@ -39,10 +39,28 @@ const razorpay =
 
 export async function POST(request: Request) {
   try {
-    const { courseId, amount } = await request.json();
+    const body = await request.json();
+    const { courseId, amount, customer } = body;
 
     if (!courseId || typeof courseId !== 'string') {
       return NextResponse.json({ message: 'Invalid course selection.' }, { status: 400 });
+    }
+
+    if (!customer || typeof customer !== 'object') {
+      return NextResponse.json({ message: 'Student details are required before payment.' }, { status: 400 });
+    }
+
+    const customerName = typeof customer.name === 'string' ? customer.name.trim() : '';
+    const customerPhone = typeof customer.phone === 'string' ? customer.phone.trim() : '';
+    const customerEmail = typeof customer.email === 'string' ? customer.email.trim() : '';
+    const customerNotes = typeof customer.notes === 'string' ? customer.notes.trim() : '';
+
+    if (!customerName || !customerPhone || !customerEmail) {
+      return NextResponse.json({ message: 'Name, phone, and email are required before payment.' }, { status: 400 });
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
+      return NextResponse.json({ message: 'Please enter a valid email address.' }, { status: 400 });
     }
 
     const course = COURSE_CATALOG[courseId as keyof typeof COURSE_CATALOG];
@@ -72,6 +90,10 @@ export async function POST(request: Request) {
       notes: {
         courseId,
         courseName: course.name,
+        customerName,
+        customerPhone,
+        customerEmail,
+        customerNotes,
       },
     });
 

@@ -49,6 +49,7 @@ export function Pricing() {
             courseId="data-ai-career-program"
             courseName="Full Stack Data & AI Career Program"
             amount={4999 * 100}
+            originalPrice={14999}
           />
           <div className="flex flex-wrap gap-4 text-sm text-slate-200">
             {['Secure Razorpay Payment', 'Instant Confirmation', 'Lifetime Access', 'Certificate'].map((item) => (
@@ -79,6 +80,7 @@ export function Pricing() {
                 courseId={item.courseId}
                 courseName={item.courseName}
                 amount={item.price * 100}
+                originalPrice={item.originalPrice ?? item.price}
               />
             </div>
           </div>

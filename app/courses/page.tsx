@@ -201,6 +201,7 @@ export default function CoursesPage() {
                       courseId={course.courseId}
                       courseName={course.courseName}
                       amount={course.price * 100}
+                      originalPrice={course.originalPrice ?? course.price}
                     />
                   </div>
                 </div>

@@ -119,6 +119,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 courseId={course.courseId}
                 courseName={course.courseName}
                 amount={course.price * 100}
+                originalPrice={course.originalPrice ?? course.price}
               />
               <Link
                 href="/courses"
