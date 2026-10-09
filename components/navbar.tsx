@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 const navItems = [
-  { label: 'Home', href: '/#home' },
-  { label: 'Courses', href: '/#course' },
-  { label: 'Why Us', href: '/#why-us' },
+  { label: 'Home', href: '/' },
+  { label: 'Courses', href: '/courses' },
   { label: 'Curriculum', href: '/#curriculum' },
   { label: 'Reviews', href: '/#reviews' },
   { label: 'FAQ', href: '/#faq' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const enquiryFormUrl = 'https://forms.gle/S69A2axjUTcLyWhx5';

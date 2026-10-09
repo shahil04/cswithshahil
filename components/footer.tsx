@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { Camera, Code2, Globe, Play } from 'lucide-react';
 
 const footerLinks = [
-  { label: 'Courses', href: '/#course' },
+  { label: 'Home', href: '/' },
+  { label: 'Courses', href: '/courses' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
